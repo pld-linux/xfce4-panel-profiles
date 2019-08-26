@@ -1,7 +1,7 @@
 Summary:	Application to manage Xfce panel layouts
 Name:		xfce4-panel-profiles
 Version:	1.0.9
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/apps/xfce4-panel-profiles/1.0/%{name}-%{version}.tar.bz2
@@ -44,6 +44,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ie
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/{hy_AM,hy}
+
 %find_lang %{name}
 
 %clean
@@ -55,8 +58,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/xfce4-panel-profiles
 %{_desktopdir}/xfce4-panel-profiles.desktop
 %{_datadir}/metainfo/org.xfce.PanelProfiles.appdata.xml
+%dir %{_datadir}/xfce4-panel-profiles
 %{_datadir}/xfce4-panel-profiles/layouts
 %{_datadir}/xfce4-panel-profiles/locale
+%dir %{_datadir}/xfce4-panel-profiles/xfce4-panel-profiles
 %{_datadir}/xfce4-panel-profiles/xfce4-panel-profiles/panelconfig.py
 %{_datadir}/xfce4-panel-profiles/xfce4-panel-profiles/xfce4-panel-profiles.glade
 %{_datadir}/xfce4-panel-profiles/xfce4-panel-profiles/xfce4-panel-profiles.py
