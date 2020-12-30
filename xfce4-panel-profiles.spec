@@ -1,11 +1,11 @@
 Summary:	Application to manage Xfce panel layouts
 Name:		xfce4-panel-profiles
-Version:	1.0.10
+Version:	1.0.12
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/apps/xfce4-panel-profiles/1.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	6190678bc701c197babcb2389ba46182
+# Source0-md5:	8a99e712ab1b93f2f53760ff383efa20
 URL:		https://git.xfce.org/apps/xfce4-panel-profiles/about/
 BuildRequires:	python3
 BuildRequires:	python3-modules
@@ -44,8 +44,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ie
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{fa_IR,hye,ie}
 %{__mv} $RPM_BUILD_ROOT%{_localedir}/{hy_AM,hy}
+
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/xfce4-panel-profiles
 
 %find_lang %{name}
 
@@ -54,15 +56,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS ChangeLog NEWS
 %attr(755,root,root) %{_bindir}/xfce4-panel-profiles
-%{_desktopdir}/xfce4-panel-profiles.desktop
+%{_desktopdir}/org.xfce.PanelProfiles.desktop
 %{_datadir}/metainfo/org.xfce.PanelProfiles.appdata.xml
 %dir %{_datadir}/xfce4-panel-profiles
 %{_datadir}/xfce4-panel-profiles/layouts
 %{_datadir}/xfce4-panel-profiles/locale
 %dir %{_datadir}/xfce4-panel-profiles/xfce4-panel-profiles
+%{_datadir}/xfce4-panel-profiles/xfce4-panel-profiles/info.py
 %{_datadir}/xfce4-panel-profiles/xfce4-panel-profiles/panelconfig.py
 %{_datadir}/xfce4-panel-profiles/xfce4-panel-profiles/xfce4-panel-profiles.glade
 %{_datadir}/xfce4-panel-profiles/xfce4-panel-profiles/xfce4-panel-profiles.py
+%{_iconsdir}/hicolor/*/apps/org.xfce.PanelProfiles.*
 %{_mandir}/man1/xfce4-panel-profiles.1*
