@@ -1,11 +1,11 @@
 Summary:	Application to manage Xfce panel layouts
 Name:		xfce4-panel-profiles
-Version:	1.0.12
+Version:	1.0.13
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/apps/xfce4-panel-profiles/1.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	8a99e712ab1b93f2f53760ff383efa20
+# Source0-md5:	94115ab592f2d134b388644e1248eecb
 URL:		https://git.xfce.org/apps/xfce4-panel-profiles/about/
 BuildRequires:	python3
 BuildRequires:	python3-modules
