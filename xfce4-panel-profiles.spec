@@ -1,11 +1,11 @@
 Summary:	Application to manage Xfce panel layouts
 Name:		xfce4-panel-profiles
-Version:	1.0.13
+Version:	1.0.14
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/apps/xfce4-panel-profiles/1.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	94115ab592f2d134b388644e1248eecb
+# Source0-md5:	c1d6c291469fb251af853171607450a9
 URL:		https://git.xfce.org/apps/xfce4-panel-profiles/about/
 BuildRequires:	python3
 BuildRequires:	python3-modules
@@ -29,7 +29,7 @@ export these panel layouts.
 %prep
 %setup -q
 
-# fix #!/usr/bin/env python -> #!/usr/bin/python:
+# fix #!/usr/bin/env python3 -> #!/usr/bin/python3:
 %{__sed} -i -e '1s,^#!.*python3,#!%{__python3},' xfce4-panel-profiles/*.py
 
 %build
@@ -62,7 +62,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/metainfo/org.xfce.PanelProfiles.appdata.xml
 %dir %{_datadir}/xfce4-panel-profiles
 %{_datadir}/xfce4-panel-profiles/layouts
-%{_datadir}/xfce4-panel-profiles/locale
 %dir %{_datadir}/xfce4-panel-profiles/xfce4-panel-profiles
 %{_datadir}/xfce4-panel-profiles/xfce4-panel-profiles/info.py
 %{_datadir}/xfce4-panel-profiles/xfce4-panel-profiles/panelconfig.py
