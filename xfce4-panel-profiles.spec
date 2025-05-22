@@ -1,14 +1,17 @@
 Summary:	Application to manage Xfce panel layouts
 Name:		xfce4-panel-profiles
-Version:	1.0.15
+Version:	1.1.1
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	https://archive.xfce.org/src/apps/xfce4-panel-profiles/1.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	296b39f316edd18a0213e406ae5673c4
+Source0:	https://archive.xfce.org/src/apps/xfce4-panel-profiles/1.1/%{name}-%{version}.tar.xz
+# Source0-md5:	167a01516aa5bc6def3f9873bf957359
 URL:		https://git.xfce.org/apps/xfce4-panel-profiles/about/
+BuildRequires:	glib2-devel >= 1:2.50.0
+BuildRequires:	gtk+3-devel >= 3.22.0
 BuildRequires:	python3
 BuildRequires:	python3-modules
+BuildRequires:	python3-psutil
 BuildRequires:	python3-setuptools
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
@@ -33,18 +36,15 @@ export these panel layouts.
 %{__sed} -i -e '1s,^#!.*python3,#!%{__python3},' xfce4-panel-profiles/*.py
 
 %build
-./configure \
-	--prefix=%{_prefix}
-
-%{__make}
+%meson
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+%meson_install
 
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{fa_IR,hye,ie}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{fa_IR,hye,ie,vec}
 %{__mv} $RPM_BUILD_ROOT%{_localedir}/{hy_AM,hy}
 
 %{__rm} -r $RPM_BUILD_ROOT%{_docdir}/xfce4-panel-profiles
@@ -56,7 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS
+%doc AUTHORS NEWS README.md
 %attr(755,root,root) %{_bindir}/xfce4-panel-profiles
 %{_desktopdir}/org.xfce.PanelProfiles.desktop
 %{_datadir}/metainfo/org.xfce.PanelProfiles.appdata.xml
